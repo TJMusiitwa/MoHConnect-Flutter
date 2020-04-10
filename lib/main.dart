@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:moh_connect/router.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
+import 'package:moh_connect/utils/moh_tabbar.dart';
 
 void main() => runApp(MyApp());
 
@@ -23,17 +24,17 @@ class MyApp extends StatelessWidget {
         darkColor: Colors.cyan,
       ),
     );
-    return PlatformApp(
-      title: 'MoH Connect',
-      android: (_) => MaterialAppData(
-        theme: materialTheme,
-        darkTheme: materialDarkTheme,
+    return PlatformProvider(
+      builder: (BuildContext context) => PlatformApp(
+        title: 'MoH Connect',
+        android: (_) => MaterialAppData(
+          theme: materialTheme,
+          darkTheme: materialDarkTheme,
+          onGenerateRoute: Router.generateRoute,
+          initialRoute: initRoute,
+        ),
+        ios: (_) => CupertinoAppData(theme: cupertinoTheme, home: MohTabBar()),
       ),
-      ios: (_) => CupertinoAppData(
-        theme: cupertinoTheme,
-      ),
-      onGenerateRoute: Router.generateRoute,
-      initialRoute: initRoute,
     );
   }
 }

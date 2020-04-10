@@ -19,18 +19,18 @@ class MoHConnectDrawer extends StatelessWidget {
           leading: Icon(Icons.edit),
           title: Text('Register'),
           onTap: () {
-            // Navigator.pop(context);
+            Navigator.pop(context);
 
-            // Navigator.pushNamed(context, 'RegisterPage');
+            Navigator.pushNamed(context, 'RegisterPage');
           },
         ),
         ListTile(
           leading: Icon(Icons.lock_open),
           title: Text('Login'),
           onTap: () {
-            // Navigator.pop(context);
+            Navigator.pop(context);
 
-            // Navigator.pushNamed(context, 'LoginPage');
+            Navigator.pushNamed(context, 'LoginPage');
           },
         ),
         ListTile(
@@ -55,9 +55,9 @@ class MoHConnectDrawer extends StatelessWidget {
           leading: Icon(Icons.more_horiz),
           title: Text('Symptoms'),
           onTap: () {
-            // Navigator.pop(context);
+            Navigator.pop(context);
 
-            // Navigator.pushNamed(context, 'SymptomsPage');
+            Navigator.pushNamed(context, 'SymptomsPage');
           },
         ),
         ListTile(

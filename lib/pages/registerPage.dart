@@ -114,12 +114,12 @@ class _RegisterPageState extends State<RegisterPage> {
                         value: _gender,
                         items: [
                           DropdownMenuItem(
-                            value: 'Bombo Road',
-                            child: Text('Bombo Road'),
+                            value: 'Male',
+                            child: Text('Male'),
                           ),
                           DropdownMenuItem(
-                            value: 'Namirembe Road',
-                            child: Text('Namirembe Road'),
+                            value: 'Female',
+                            child: Text('Female'),
                           ),
                         ],
                         onChanged: (value) {

@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:moh_connect/pages/contactsPage.dart';
 import 'package:moh_connect/pages/homePage.dart';
+import 'package:moh_connect/pages/loginPage.dart';
 import 'package:moh_connect/pages/registerPage.dart';
 import 'package:moh_connect/pages/reportPage.dart';
+import 'package:moh_connect/pages/symptomsPage.dart';
 
 const String initRoute = 'HomePage';
 const String reportRoute = 'ReportPage';
 const String contactsRoute = 'ContactPage';
 const String registerRoute = 'RegisterPage';
+const String symptomsRoute = 'SymptomsPage';
+const String loginRoute = 'loginPage';
 
 class Router {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -28,6 +32,16 @@ class Router {
         return MaterialPageRoute(
             builder: (_) => RegisterPage(),
             settings: RouteSettings(name: registerRoute));
+        break;
+      case symptomsRoute:
+        return MaterialPageRoute(
+            builder: (_) => SymptomsPage(),
+            settings: RouteSettings(name: symptomsRoute));
+        break;
+      case loginRoute:
+        return MaterialPageRoute(
+            builder: (_) => LoginPage(),
+            settings: RouteSettings(name: loginRoute));
         break;
       default:
         return MaterialPageRoute(
