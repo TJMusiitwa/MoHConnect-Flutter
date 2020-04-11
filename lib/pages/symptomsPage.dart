@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:moh_connect/models/symptom_model.dart';
 import 'package:moh_connect/services/contacts_repo.dart';
 import 'package:moh_connect/utils/moh_drawer.dart';
-import 'package:moh_connect/utils/moh_tabbar.dart';
 
 class SymptomsPage extends StatefulWidget {
   @override

@@ -11,7 +11,7 @@ const String reportRoute = 'ReportPage';
 const String contactsRoute = 'ContactPage';
 const String registerRoute = 'RegisterPage';
 const String symptomsRoute = 'SymptomsPage';
-const String loginRoute = 'loginPage';
+const String loginRoute = 'LoginPage';
 
 class Router {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -45,7 +45,8 @@ class Router {
         break;
       default:
         return MaterialPageRoute(
-            builder: (_) => null, settings: RouteSettings(name: 'Error Page'));
+            builder: (_) => Container(),
+            settings: RouteSettings(name: 'Error Page'));
     }
   }
 }

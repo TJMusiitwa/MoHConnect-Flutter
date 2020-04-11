@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 
@@ -8,6 +9,7 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final _loginScaffoldKey = GlobalKey<ScaffoldState>();
+  final _loginFormKey = GlobalKey<FormState>();
 
   TextEditingController _phoneNumberController = TextEditingController();
 
@@ -24,35 +26,41 @@ class _LoginPageState extends State<LoginPage> {
           decoration: BoxDecoration(
               image: DecorationImage(
                   image: AssetImage('assets/login_back.jpg'),
-                  fit: BoxFit.fitWidth,
+                  fit: BoxFit.cover,
                   alignment: Alignment.topCenter)),
         ),
         Positioned(
           bottom: 0,
           left: 0.0,
           right: 0.0,
-          height: MediaQuery.of(context).size.height - 400,
+          height: MediaQuery.of(context).size.height - 250,
           child: Container(
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(15),
+                topRight: Radius.circular(15),
+              ),
+              color: Colors.white,
             ),
             child: SingleChildScrollView(
               padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
               child: Column(
                 children: <Widget>[
                   Padding(
-                    padding: EdgeInsets.fromLTRB(3, 10, 30, 3),
+                    padding: const EdgeInsets.all(16.0),
                     child: Text(
-                      'Login',
+                      "Login",
                       style: TextStyle(
-                        fontSize: 28,
-                        fontWeight: FontWeight.bold,
-                        color: Color.fromRGBO(3, 24, 89, 1),
-                      ),
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black),
                     ),
                   ),
                   Form(
+                    key: _loginFormKey,
                     child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: <Widget>[
                         TextFormField(
                           controller: _phoneNumberController,
@@ -69,6 +77,9 @@ class _LoginPageState extends State<LoginPage> {
                             }
                             return null;
                           },
+                          onSaved: (String value) {
+                            _phoneNumberController.text = value;
+                          },
                         ),
                         Padding(
                           padding: const EdgeInsets.only(top: 15),
@@ -79,7 +90,6 @@ class _LoginPageState extends State<LoginPage> {
                                   style: TextStyle(
                                     fontSize: 15,
                                     fontWeight: FontWeight.bold,
-                                    color: Colors.white,
                                   ),
                                 ),
                                 height: 50,
@@ -87,13 +97,33 @@ class _LoginPageState extends State<LoginPage> {
                                 elevation: 0,
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(12)),
-                                onPressed: () {
-                                  _loginScaffoldKey.currentState.showSnackBar(
-                                    SnackBar(
-                                      content: Text(
-                                          'The login will be added later on'),
-                                    ),
-                                  );
+                                onPressed: () async {
+                                  if (_loginFormKey.currentState.validate()) {
+                                    _loginFormKey.currentState.save();
+                                    Response response;
+                                    Dio dio = Dio();
+                                    dio.options.baseUrl =
+                                        'http://15.188.180.73:8080/YCSR/webapi/requests/user';
+                                    response = await dio.get(
+                                        "/verify/${_phoneNumberController.text}");
+                                    //TODO: Fix this backend logic that still logs in after status code 200 is passed.
+                                    if (response.statusCode == 200 ||
+                                        response.statusCode == 201) {
+                                      print(response.statusMessage);
+                                      Future.delayed(Duration(seconds: 3), () {
+                                        setState(() {
+                                          Navigator.of(context)
+                                              .popAndPushNamed('HomePage');
+                                        });
+                                      });
+                                    } else {
+                                      _loginScaffoldKey.currentState
+                                          .showSnackBar(SnackBar(
+                                        content: Text(response.statusMessage),
+                                        behavior: SnackBarBehavior.floating,
+                                      ));
+                                    }
+                                  }
                                 }),
                           ),
                         ),
