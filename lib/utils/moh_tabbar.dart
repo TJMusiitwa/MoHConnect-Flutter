@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:moh_connect/pages/contactsPage.dart';
-import 'package:moh_connect/pages/reportPage.dart';
+import 'package:moh_connect/pages/homePage.dart';
+
 import 'package:moh_connect/pages/symptomsPage.dart';
 
 class MohTabBar extends StatefulWidget {
@@ -33,9 +34,9 @@ class _MohTabBarState extends State<MohTabBar> {
         switch (index) {
           case 0:
             return CupertinoTabView(
-              defaultTitle: 'Report',
+              defaultTitle: 'Home',
               builder: (context) {
-                return CupertinoPageScaffold(child: ReportPage());
+                return CupertinoPageScaffold(child: HomePage());
               },
             );
             break;
@@ -56,7 +57,7 @@ class _MohTabBarState extends State<MohTabBar> {
             );
             break;
           default:
-            return ReportPage();
+            return HomePage();
             break;
         }
       },

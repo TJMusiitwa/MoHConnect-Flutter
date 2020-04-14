@@ -6,7 +6,6 @@ import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:moh_connect/models/contact.dart';
 import 'package:moh_connect/scoped_model/contacts_scoped_model.dart';
 import 'package:moh_connect/services/contacts_repo.dart';
-import 'package:moh_connect/utils/moh_drawer.dart';
 import 'package:http/http.dart' as http;
 import 'package:url_launcher/url_launcher.dart';
 
@@ -65,9 +64,7 @@ class _ContactsPageState extends State<ContactsPage> {
   @override
   Widget build(BuildContext context) {
     return PlatformScaffold(
-      appBar: PlatformAppBar(
-        title: PlatformText('Contacts'),
-      ),
+      iosContentPadding: true,
       body: ListView.builder(
         padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 15),
         itemCount: returnedContacts.length,
@@ -85,12 +82,6 @@ class _ContactsPageState extends State<ContactsPage> {
             ),
           );
         },
-      ),
-      android: (_) => MaterialScaffoldData(
-        drawer: MoHConnectDrawer(),
-      ),
-      ios: (_) => CupertinoPageScaffoldData(
-        bottomTabBar: CupertinoTabBar(items: []),
       ),
     );
   }

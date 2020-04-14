@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:moh_connect/models/report_issue.dart';
-import 'package:moh_connect/utils/moh_drawer.dart';
 import 'package:http/http.dart' as http;
 
 class ReportPage extends StatefulWidget {
@@ -17,7 +16,7 @@ class _ReportPageState extends State<ReportPage> {
   final _reportFormKey = GlobalKey<FormState>();
   final _reportScaffoldKey = GlobalKey<ScaffoldState>();
   TextEditingController _descriptionController,
-      //_locationController,
+      _locationController,
       _symptomsController;
   Position _currentPosition;
   String _currentLocation;
@@ -36,41 +35,41 @@ class _ReportPageState extends State<ReportPage> {
           setState(() {
             _currentPosition = position;
           });
-          _getLocationFromLatLng();
+          //_getLocationFromLatLng();
         });
     } catch (e) {
       Exception(e.toString());
     }
   }
 
-  void _getLocationFromLatLng() async {
-    try {
-      List<Placemark> p = await geolocator.placemarkFromCoordinates(
-          _currentPosition.latitude, _currentPosition.longitude);
-      Placemark place = p[0];
-      setState(() {
-        _currentLocation =
-            "${place.subThoroughfare},${place.thoroughfare}, ${place.locality}, ${place.administrativeArea}";
-      });
-    } catch (e) {
-      Exception(e.toString());
-    }
-  }
+  // void _getLocationFromLatLng() async {
+  //   try {
+  //     List<Placemark> p = await geolocator.placemarkFromCoordinates(
+  //         _currentPosition.latitude, _currentPosition.longitude);
+  //     Placemark place = p[0];
+  //     setState(() {
+  //       _currentLocation =
+  //           "${place.subThoroughfare},${place.thoroughfare}, ${place.locality}, ${place.administrativeArea}";
+  //     });
+  //   } catch (e) {
+  //     Exception(e.toString());
+  //   }
+  // }
 
   @override
   void initState() {
     super.initState();
     _getUserLocation();
-    _getLocationFromLatLng();
+    //_getLocationFromLatLng();
     _descriptionController = TextEditingController(text: '');
-    //_locationController = TextEditingController(text: _currentLocation);
+    _locationController = TextEditingController(text: '');
     _symptomsController = TextEditingController(text: '');
   }
 
   @override
   void dispose() {
     _descriptionController.dispose();
-    //_locationController.dispose();
+    _locationController.dispose();
     _symptomsController.dispose();
     super.dispose();
   }
@@ -99,18 +98,17 @@ class _ReportPageState extends State<ReportPage> {
               child: Column(
                 children: <Widget>[
                   TextFormField(
-                    //controller: _locationController,
-                    initialValue: _currentLocation,
-                    enabled: false,
+                    controller: _locationController,
+                    //initialValue: _currentLocation,
                     decoration: InputDecoration(
                       labelText: 'Location',
                       border: OutlineInputBorder(),
                     ),
                   ),
-                  Visibility(
-                    child: Text(_currentLocation),
-                    visible: false,
-                  ),
+                  // Visibility(
+                  //   child: Text(_currentLocation),
+                  //   visible: false,
+                  // ),
                   SizedBox(
                     height: 25.0,
                   ),
@@ -180,12 +178,7 @@ class _ReportPageState extends State<ReportPage> {
           ],
         ),
       ),
-      android: (_) => MaterialScaffoldData(
-        drawer: MoHConnectDrawer(),
-      ),
-      ios: (_) => CupertinoPageScaffoldData(
-        bottomTabBar: CupertinoTabBar(items: []),
-      ),
+      iosContentPadding: true,
     );
   }
 
