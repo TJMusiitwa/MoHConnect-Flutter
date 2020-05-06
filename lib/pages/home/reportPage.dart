@@ -97,13 +97,19 @@ class _ReportPageState extends State<ReportPage> {
               key: _reportFormKey,
               child: Column(
                 children: <Widget>[
-                  TextFormField(
+                  PlatformTextField(
                     controller: _locationController,
-                    //initialValue: _currentLocation,
-                    decoration: InputDecoration(
-                      labelText: 'Location',
-                      border: OutlineInputBorder(),
+                    android: (_) => MaterialTextFieldData(
+                      decoration: InputDecoration(
+                        labelText: 'Location',
+                        border: OutlineInputBorder(),
+                      ),
                     ),
+                    ios: (_) => CupertinoTextFieldData(
+                        decoration: BoxDecoration(
+                            border: Border.all(),
+                            borderRadius: BorderRadius.circular(4.0)),
+                        placeholder: 'Location'),
                   ),
                   // Visibility(
                   //   child: Text(_currentLocation),
@@ -112,40 +118,46 @@ class _ReportPageState extends State<ReportPage> {
                   SizedBox(
                     height: 25.0,
                   ),
-                  TextFormField(
-                    controller: _descriptionController,
-                    maxLines: 3,
-                    decoration: InputDecoration(
-                      labelText: 'Description',
-                      border: OutlineInputBorder(),
-                    ),
+                  PlatformTextField(
+                    controller: _symptomsController,
                     keyboardType: TextInputType.text,
-                    validator: (descValue) {
-                      if (descValue.isEmpty) {
-                        return 'Please provide a description';
-                      }
-                      return null;
-                    },
+                    maxLines: 2,
+                    android: (_) => MaterialTextFieldData(
+                      decoration: InputDecoration(
+                        labelText: 'Symptoms',
+                        hintText: 'Please enter your symptoms',
+                        border: OutlineInputBorder(),
+                      ),
+                    ),
+                    ios: (_) => CupertinoTextFieldData(
+                        decoration: BoxDecoration(
+                            border: Border.all(),
+                            borderRadius: BorderRadius.circular(4.0)),
+                        placeholder: 'Please enter your symptoms'),
                   ),
                   SizedBox(
                     height: 25.0,
                   ),
-                  TextFormField(
-                    controller: _symptomsController,
-                    maxLines: 2,
-                    decoration: InputDecoration(
-                      labelText: 'Symptoms',
-                      hintText: 'Please enter your symptoms',
-                      border: OutlineInputBorder(),
-                    ),
+                  PlatformTextField(
+                    controller: _descriptionController,
                     keyboardType: TextInputType.text,
-                    validator: (symptomsValue) {
-                      if (symptomsValue.isEmpty) {
-                        return 'Please provide your symptoms';
-                      }
-                      return null;
-                    },
+                    maxLines: 3,
+                    android: (_) => MaterialTextFieldData(
+                      decoration: InputDecoration(
+                        labelText: 'Description',
+                        hintText:
+                            'Please provide a description of the symptoms',
+                        border: OutlineInputBorder(),
+                      ),
+                    ),
+                    ios: (_) => CupertinoTextFieldData(
+                        decoration: BoxDecoration(
+                            border: Border.all(),
+                            borderRadius: BorderRadius.circular(4.0)),
+                        placeholder:
+                            'Please provide a description of the symptoms'),
                   ),
+
                   SizedBox(
                     height: 25.0,
                   ),

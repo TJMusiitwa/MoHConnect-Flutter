@@ -19,10 +19,11 @@ class MyApp extends StatelessWidget {
 
     final cupertinoTheme = new CupertinoThemeData(
       primaryColor: CupertinoDynamicColor.withBrightness(
-        color: CupertinoColors.systemRed,
+        color: CupertinoColors.systemOrange,
         darkColor: CupertinoColors.systemRed,
       ),
     );
+
     return PlatformProvider(
       settings: PlatformSettingsData(iosUsesMaterialWidgets: true),
       builder: (BuildContext context) => PlatformApp(

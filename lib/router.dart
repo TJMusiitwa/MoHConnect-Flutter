@@ -3,7 +3,7 @@ import 'package:moh_connect/pages/contactsPage.dart';
 import 'package:moh_connect/pages/homePage.dart';
 import 'package:moh_connect/pages/loginPage.dart';
 import 'package:moh_connect/pages/registerPage.dart';
-import 'package:moh_connect/pages/reportPage.dart';
+import 'package:moh_connect/pages/home/reportPage.dart';
 import 'package:moh_connect/pages/symptomsPage.dart';
 
 const String initRoute = 'HomePage';

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
-import 'package:moh_connect/pages/aboutPage.dart';
+import 'package:moh_connect/pages/about/aboutPage.dart';
 import 'package:moh_connect/pages/homePage.dart';
 import 'package:moh_connect/pages/infoPage.dart';
 

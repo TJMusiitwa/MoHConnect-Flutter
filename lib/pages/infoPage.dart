@@ -9,11 +9,11 @@ class InfoPage extends StatefulWidget {
 }
 
 class _InfoPageState extends State<InfoPage>
-    with SingleTickerProviderStateMixin, AutomaticKeepAliveClientMixin {
+    with SingleTickerProviderStateMixin {
   final Map<int, Widget> infoTitles = const <int, Widget>{
     0: Text('Q & A'),
     1: Text('Advice for Public'),
-    2: Text('Contacts'),
+    2: Text('Resources'),
   };
 
   final Map<int, Widget> iOSInfoContent = const <int, Widget>{
@@ -37,38 +37,49 @@ class _InfoPageState extends State<InfoPage>
   TabController tabController;
 
   @override
-  bool get wantKeepAlive => true;
-
-  @override
   Widget build(BuildContext context) {
     return PlatformScaffold(
-      appBar: PlatformAppBar(
-        title: Text('Info'),
-        automaticallyImplyLeading: false,
-      ),
       android: (_) => MaterialScaffoldData(
-          appBar: AppBar(
-            bottom: TabBar(controller: tabController, tabs: [
-              Tab(
-                icon: Icon(Icons.help_outline),
-                text: 'Q & A',
+        body: NestedScrollView(
+          headerSliverBuilder: (context, value) {
+            return [
+              SliverAppBar(
+                pinned: true,
+                expandedHeight: 300.0,
+                automaticallyImplyLeading: false,
+                elevation: 0,
+                title: PlatformText('Info'),
+                flexibleSpace: FlexibleSpaceBar(
+                  background: Image.asset(
+                    'assets/login_back.jpg',
+                    fit: BoxFit.cover,
+                    colorBlendMode: BlendMode.darken,
+                    color: Colors.black12,
+                  ),
+                ),
+                bottom: TabBar(controller: tabController, tabs: [
+                  Tab(
+                    text: 'Q & A',
+                  ),
+                  Tab(
+                    text: 'Advice for public',
+                  ),
+                  Tab(
+                    text: 'Resources',
+                  ),
+                ]),
               ),
-              Tab(
-                icon: Icon(Icons.question_answer),
-                text: 'Advice for public',
-              ),
-              Tab(
-                icon: Icon(Icons.phone),
-                text: 'Contacts',
-              ),
-            ]),
-          ),
+            ];
+          },
           body: TabBarView(controller: tabController, children: [
             Container(),
             Container(),
             ContactsPage(),
-          ])),
+          ]),
+        ),
+      ),
       ios: (_) => CupertinoPageScaffoldData(
+        navigationBar: CupertinoNavigationBar(middle: Text('Info')),
         body: SafeArea(
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 10.0),
