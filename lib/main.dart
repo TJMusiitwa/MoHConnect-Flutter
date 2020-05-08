@@ -6,7 +6,6 @@ import 'package:moh_connect/utils/moh_bottomnav.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     final materialTheme = new ThemeData(
@@ -18,11 +17,20 @@ class MyApp extends StatelessWidget {
     );
 
     final cupertinoTheme = new CupertinoThemeData(
-      primaryColor: CupertinoDynamicColor.withBrightness(
-        color: CupertinoColors.systemOrange,
-        darkColor: CupertinoColors.systemRed,
-      ),
-    );
+        primaryColor: CupertinoDynamicColor.withBrightness(
+          color: CupertinoColors.systemOrange,
+          darkColor: CupertinoColors.systemRed,
+        ),
+        textTheme: CupertinoTextThemeData(
+          primaryColor: CupertinoDynamicColor.withBrightness(
+            color: Color.fromARGB(255, 0, 0, 0),
+            darkColor: Color.fromARGB(255, 255, 255, 255),
+          ),
+        ),
+        scaffoldBackgroundColor: CupertinoDynamicColor.withBrightness(
+          color: CupertinoColors.white,
+          darkColor: CupertinoColors.black,
+        ));
 
     return PlatformProvider(
       settings: PlatformSettingsData(iosUsesMaterialWidgets: true),

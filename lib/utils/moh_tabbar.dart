@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:moh_connect/pages/contactsPage.dart';
-import 'package:moh_connect/pages/homePage.dart';
+import 'package:moh_connect/pages/home/homePage.dart';
 
 import 'package:moh_connect/pages/symptomsPage.dart';
 

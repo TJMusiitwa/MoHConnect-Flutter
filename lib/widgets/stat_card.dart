@@ -21,7 +21,7 @@ class StatCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                Text(title, style: Theme.of(context).textTheme.subhead),
+                Text(title, style: Theme.of(context).textTheme.subtitle1),
                 SizedBox(height: 8),
                 statCount,
               ],

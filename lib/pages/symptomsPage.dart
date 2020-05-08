@@ -6,7 +6,6 @@ import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:moh_connect/models/symptom_model.dart';
 import 'package:moh_connect/services/contacts_repo.dart';
-import 'package:moh_connect/utils/moh_drawer.dart';
 
 class SymptomsPage extends StatefulWidget {
   @override
@@ -72,9 +71,6 @@ class _SymptomsPageState extends State<SymptomsPage> {
             );
           },
         ),
-      ),
-      android: (_) => MaterialScaffoldData(
-        drawer: MoHConnectDrawer(),
       ),
     );
   }

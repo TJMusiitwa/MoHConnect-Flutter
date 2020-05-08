@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:moh_connect/pages/contactsPage.dart';
-import 'package:moh_connect/pages/homePage.dart';
+import 'package:moh_connect/pages/home/homePage.dart';
 import 'package:moh_connect/pages/loginPage.dart';
 import 'package:moh_connect/pages/registerPage.dart';
 import 'package:moh_connect/pages/home/reportPage.dart';
