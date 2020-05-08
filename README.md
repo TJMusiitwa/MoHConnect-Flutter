@@ -1,6 +1,6 @@
 # moh_connect
 
-A new Flutter project.
+A new Flutter project to support the Ministry of Health initiative.
 
 ## Getting Started
 
